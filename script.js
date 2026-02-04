@@ -489,16 +489,7 @@ function initAnimations() {
     });
 }
 
-// Set profile image
-function setProfileImage() {
-    const profileImg = document.getElementById('profile-img');
-    profileImg.src = '../image/610946595_2671604046557184_390726888319520560_n.jpg';
-    
-    // Fallback to a placeholder if image doesn't load
-    profileImg.onerror = function() {
-        this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjM1MCIgdmlld0JveD0iMCAwIDM1MCAzNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzNTAiIGhlaWdodD0iMzUwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjE3NSIgeT0iMTg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsIj7gpLbgpY3gpLDgpYAg4KS24KSC4KSV4KSwIOCkl+Ckv+CksOClgDwvdGV4dD4KPC9zdmc+';
-    };
-}
+
 
 // Update copyright year
 function updateCopyrightYear() {
@@ -516,7 +507,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadWorks();
     initAnimations();
     initStatsAnimation();
-    setProfileImage();
+
     updateCopyrightYear();
     
     // Add loading states
