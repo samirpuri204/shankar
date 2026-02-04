@@ -979,17 +979,25 @@ body {
 
 .service-card li {
     padding: 0.75rem 0;
-    color: var(--text-light);
+    color: var(--text-primary);
     position: relative;
-    padding-left: 0;
+    padding-left: 2rem;
     transition: all 0.2s ease;
-    border-left: 3px solid var(--primary);
-    padding-left: 1rem;
     margin-bottom: 0.5rem;
 }
 
 .service-card li::before {
-    display: none;
+    content: "\f00c";
+    /* FontAwesome Check Icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-size: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.2s ease;
 }
 
 .service-card li:hover {
@@ -1431,12 +1439,13 @@ body {
     }
 
     .service-card li {
-        padding-left: 1rem;
+        padding-left: 2.5rem;
         text-align: left;
     }
 
     .service-card li::before {
-        display: none;
+        display: block;
+        left: 0.8rem;
     }
 
     .achievement-icon,
@@ -1553,12 +1562,13 @@ body {
     .service-card li {
         font-size: 0.85rem;
         padding: 0.6rem 0;
-        padding-left: 1rem;
+        padding-left: 2.8rem;
         position: relative;
     }
 
     .service-card li::before {
-        display: none;
+        display: block;
+        left: 0.8rem;
     }
 
     .achievement-icon,
