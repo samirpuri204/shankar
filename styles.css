@@ -1546,14 +1546,14 @@ body {
     .service-card li {
         font-size: 0.85rem;
         padding: 0.6rem 0;
-        padding-left: 2.5rem;
-        /* Sufficient gap for Devanagari text */
+        padding-left: 3rem;
+        /* Further increased gap for clarity */
         position: relative;
     }
 
     .service-card li::before {
-        left: 0.5rem;
-        /* Explicitly move arrow further left */
+        left: 0.4rem;
+        /* Pushing arrow further left */
     }
 
     .achievement-icon,
