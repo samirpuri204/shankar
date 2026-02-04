@@ -981,28 +981,33 @@ body {
     padding: 0.75rem 0;
     color: var(--text-light);
     position: relative;
-    padding-left: 2rem;
-    /* Increased base padding */
+    padding-left: 2.5rem;
+    /* Increased base padding for better spacing */
     transition: all 0.2s ease;
+    word-wrap: break-word;
+    line-height: 1.5;
 }
 
 .service-card li::before {
     content: "→";
     position: absolute;
-    left: 0.5rem;
-    /* Fixed left position */
+    left: 0.75rem;
+    /* Adjusted left position for better spacing */
+    top: 0.75rem;
     color: var(--primary-color);
     font-weight: bold;
     transition: all 0.2s ease;
+    font-size: 1rem;
+    line-height: 1;
 }
 
 .service-card li:hover {
     color: var(--text-dark);
-    padding-left: 2rem;
+    padding-left: 2.5rem;
 }
 
 .service-card li:hover::before {
-    transform: translateX(5px);
+    transform: translateX(3px);
 }
 
 /* Gallery with Advanced Grid */
@@ -1435,13 +1440,20 @@ body {
     }
 
     .service-card li {
-        padding-left: 3rem;
-        /* Robust padding for mobile */
+        padding-left: 3.5rem;
+        /* Increased padding for mobile to prevent overlap */
         text-align: left;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: 0.9rem;
+        line-height: 1.6;
     }
 
     .service-card li::before {
-        left: 0.8rem;
+        left: 1rem;
+        /* Moved arrow further left for mobile */
+        top: 1rem;
+        font-size: 0.9rem;
     }
 
     .achievement-icon,
@@ -1557,15 +1569,19 @@ body {
 
     .service-card li {
         font-size: 0.85rem;
-        padding: 0.6rem 0;
-        padding-left: 3.5rem;
-        /* Even larger for very small screens */
+        padding: 0.8rem 0;
+        padding-left: 4rem;
+        /* Even larger padding for very small screens */
         position: relative;
+        line-height: 1.7;
+        word-break: break-word;
     }
 
     .service-card li::before {
-        left: 0.4rem;
-        /* Pushing arrow further left */
+        left: 0.8rem;
+        /* Optimal arrow position for small screens */
+        top: 0.8rem;
+        font-size: 0.8rem;
     }
 
     .achievement-icon,
