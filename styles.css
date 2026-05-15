@@ -1069,6 +1069,61 @@ body {
     opacity: 1;
 }
 
+/* Highlight Video Section */
+.highlight-video {
+    padding: 6rem 0;
+    background: linear-gradient(180deg, #f7fafc 0%, #eef2ff 100%);
+}
+
+.highlight-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gradient-primary);
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0 auto 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.highlight-video .container {
+    text-align: center;
+}
+
+.highlight-subtitle {
+    max-width: 700px;
+    margin: -2rem auto 2.5rem;
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.7;
+}
+
+.highlight-player {
+    max-width: 960px;
+    margin: 0 auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    border: 4px solid white;
+    background: #000;
+}
+
+.highlight-player video {
+    width: 100%;
+    display: block;
+    max-height: 540px;
+    background: #000;
+}
+
+.highlight-caption {
+    margin-top: 1.5rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
 /* Videos Section */
 .videos {
     padding: 8rem 0;
@@ -1099,6 +1154,18 @@ body {
     width: 100%;
     height: 250px;
     object-fit: cover;
+}
+
+.video-item-content {
+    padding: 1rem;
+}
+
+.video-item-featured {
+    border: 2px solid var(--primary);
+}
+
+.video-item-featured h4 {
+    color: var(--primary);
 }
 
 
@@ -1415,6 +1482,14 @@ body {
         padding: 1.2rem;
         margin-bottom: 1rem;
         font-size: 0.9rem;
+    }
+
+    .highlight-video {
+        padding: 4rem 0;
+    }
+
+    .highlight-player video {
+        max-height: 320px;
     }
 
     .achievements,

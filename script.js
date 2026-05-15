@@ -85,6 +85,7 @@ async function loadVideos() {
     const videosGrid = document.getElementById('videos-grid');
     
     allVideos = [
+        { src: 'images/jilla-hospital.mp4', title: 'जिल्ला अस्पताल', description: 'प्रदेश अस्पताल कुश्मा, पर्बत — स्वास्थ्य सेवा विकास र सामुदायिक योगदान', featured: true },
         'images/1a72e449-8509-4e8c-ba21-71da202f9618.MP4',
         'images/1d9492eb-beb2-46ed-8972-f59232c70fa7.MP4',
         'images/2426ce00-bdfe-4b98-8641-ac3b3d204bff.MP4',
@@ -120,24 +121,48 @@ function renderGallery() {
     updateGalleryButton();
 }
 
+function getVideoMeta(video, index) {
+    if (typeof video === 'object') {
+        return {
+            src: video.src,
+            title: video.title,
+            description: video.description,
+            featured: Boolean(video.featured)
+        };
+    }
+
+    return {
+        src: video,
+        title: `भिडियो ${index + 1}`,
+        description: 'श्री शंकर गिरीको कार्यक्रम र गतिविधिहरू',
+        featured: false
+    };
+}
+
+function getGalleryVideos() {
+    return allVideos.filter((video) => !(typeof video === 'object' && video.featured));
+}
+
 // Render videos based on current state
 function renderVideos() {
     const videosGrid = document.getElementById('videos-grid');
-    const videosToShow = isVideosExpanded ? allVideos : allVideos.slice(0, INITIAL_VIDEOS_COUNT);
+    const galleryVideos = getGalleryVideos();
+    const videosToShow = isVideosExpanded ? galleryVideos : galleryVideos.slice(0, INITIAL_VIDEOS_COUNT);
     
     videosGrid.innerHTML = '';
-    videosToShow.forEach((videoPath, index) => {
+    videosToShow.forEach((video, index) => {
+        const { src, title, description, featured } = getVideoMeta(video, index);
         const videoItem = document.createElement('div');
-        videoItem.className = 'video-item';
+        videoItem.className = featured ? 'video-item video-item-featured' : 'video-item';
         videoItem.innerHTML = `
             <video controls preload="metadata" onerror="this.parentElement.style.display='none'">
-                <source src="${videoPath}" type="video/mp4">
-                <source src="${videoPath}" type="video/mov">
+                <source src="${src}" type="video/mp4">
+                <source src="${src}" type="video/quicktime">
                 तपाईंको ब्राउजरले भिडियो समर्थन गर्दैन।
             </video>
-            <div style="padding: 1rem;">
-                <h4>भिडियो ${index + 1}</h4>
-                <p>श्री शंकर गिरीको कार्यक्रम र गतिविधिहरू</p>
+            <div class="video-item-content">
+                <h4>${title}</h4>
+                <p>${description}</p>
             </div>
         `;
         videosGrid.appendChild(videoItem);
@@ -180,7 +205,8 @@ function updateVideosButton() {
             btn.innerHTML = '<i class="fas fa-chevron-up"></i> कम देखाउनुहोस्';
             btn.classList.add('expanded');
         } else {
-            btn.innerHTML = '<i class="fas fa-chevron-down"></i> थप हेर्नुहोस् (' + (allVideos.length - INITIAL_VIDEOS_COUNT) + ' बढी)';
+            const galleryCount = getGalleryVideos().length;
+            btn.innerHTML = '<i class="fas fa-chevron-down"></i> थप हेर्नुहोस् (' + (galleryCount - INITIAL_VIDEOS_COUNT) + ' बढी)';
             btn.classList.remove('expanded');
         }
     }
