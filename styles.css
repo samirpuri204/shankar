@@ -1073,6 +1073,7 @@ body {
 .highlight-video {
     padding: 6rem 0;
     background: linear-gradient(180deg, #f7fafc 0%, #eef2ff 100%);
+    overflow: hidden;
 }
 
 .highlight-badge {
@@ -1091,37 +1092,58 @@ body {
 
 .highlight-video .container {
     text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.highlight-video .section-title {
+    margin-bottom: 1rem;
 }
 
 .highlight-subtitle {
     max-width: 700px;
-    margin: -2rem auto 2.5rem;
+    margin: 0 auto 1.75rem;
+    padding: 0 0.5rem;
     color: var(--text-secondary);
     font-size: 1.125rem;
     line-height: 1.7;
 }
 
 .highlight-player {
+    position: relative;
+    width: 100%;
     max-width: 960px;
     margin: 0 auto;
+    aspect-ratio: 16 / 9;
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-xl);
     border: 4px solid white;
     background: #000;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
-.highlight-player video {
+.highlight-player video,
+.highlight-player .inline-video {
     width: 100%;
+    height: 100%;
     display: block;
-    max-height: 540px;
+    object-fit: contain;
     background: #000;
+    vertical-align: middle;
+}
+
+.highlight-player video::-webkit-media-controls-panel {
+    padding: 0 0.25rem;
 }
 
 .highlight-caption {
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
+    padding: 0 0.5rem;
     color: var(--text-muted);
     font-size: 1rem;
+    line-height: 1.6;
 }
 
 /* Videos Section */
@@ -1150,10 +1172,18 @@ body {
     box-shadow: var(--shadow-heavy);
 }
 
-.video-item video {
+.video-item {
+    position: relative;
+}
+
+.video-item video,
+.video-item .inline-video {
     width: 100%;
-    height: 250px;
-    object-fit: cover;
+    height: auto;
+    min-height: 200px;
+    max-height: 55vh;
+    object-fit: contain;
+    background: #000;
 }
 
 .video-item-content {
@@ -1485,11 +1515,35 @@ body {
     }
 
     .highlight-video {
-        padding: 4rem 0;
+        padding: 3.5rem 0;
     }
 
-    .highlight-player video {
-        max-height: 320px;
+    .highlight-video .section-title {
+        font-size: clamp(1.6rem, 6vw, 2rem);
+        margin-bottom: 0.75rem;
+    }
+
+    .highlight-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+        line-height: 1.6;
+    }
+
+    .highlight-badge {
+        font-size: 0.85rem;
+        padding: 0.45rem 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .highlight-player {
+        border-width: 2px;
+        border-radius: var(--radius);
+        max-width: 100%;
+    }
+
+    .highlight-caption {
+        font-size: 0.9rem;
+        margin-top: 1rem;
     }
 
     .achievements,
@@ -1596,6 +1650,29 @@ body {
         margin-bottom: 2rem;
     }
 
+    .highlight-video {
+        padding: 2.75rem 0;
+    }
+
+    .highlight-video .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .highlight-subtitle {
+        font-size: 0.92rem;
+        margin-bottom: 1rem;
+    }
+
+    .highlight-player {
+        border-width: 2px;
+        border-radius: 12px;
+    }
+
+    .highlight-caption {
+        font-size: 0.85rem;
+    }
+
     .about,
     .achievements,
     .services,
@@ -1676,8 +1753,10 @@ body {
         border-radius: 15px;
     }
 
-    .video-item video {
-        height: 180px;
+    .video-item video,
+    .video-item .inline-video {
+        min-height: 180px;
+        max-height: 50vh;
         border-radius: 15px 15px 0 0;
     }
 

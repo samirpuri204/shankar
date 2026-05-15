@@ -155,7 +155,7 @@ function renderVideos() {
         const videoItem = document.createElement('div');
         videoItem.className = featured ? 'video-item video-item-featured' : 'video-item';
         videoItem.innerHTML = `
-            <video controls preload="metadata" onerror="this.parentElement.style.display='none'">
+            <video class="inline-video" controls playsinline webkit-playsinline x5-playsinline preload="metadata" onerror="this.parentElement.style.display='none'">
                 <source src="${src}" type="video/mp4">
                 <source src="${src}" type="video/quicktime">
                 तपाईंको ब्राउजरले भिडियो समर्थन गर्दैन।
@@ -169,6 +169,7 @@ function renderVideos() {
     });
     
     updateVideosButton();
+    initInlineVideos();
 }
 
 // Toggle gallery display
@@ -526,6 +527,23 @@ function updateCopyrightYear() {
     }
 }
 
+// Enable inline playback on mobile (no forced fullscreen on iOS)
+function initInlineVideos() {
+    document.querySelectorAll('video').forEach((video) => {
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+        video.playsInline = true;
+        video.controls = true;
+
+        video.addEventListener('webkitbeginfullscreen', (event) => {
+            event.preventDefault();
+            if (typeof video.webkitExitFullscreen === 'function') {
+                video.webkitExitFullscreen();
+            }
+        });
+    });
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     loadGallery();
@@ -533,6 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadWorks();
     initAnimations();
     initStatsAnimation();
+    initInlineVideos();
 
     updateCopyrightYear();
     
